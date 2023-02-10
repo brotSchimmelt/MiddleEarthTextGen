@@ -1,12 +1,12 @@
 import pdfplumber
-from util import remove_spaces
+from helper import remove_spaces
 
 
-PDF_PATH = "text_files/x.pdf"
-TXT_PATH = "text_files/txt/x.txt"
+INPUT_PDF_PATH = "../text_files/x.pdf"
+OUTPUT_TXT_PATH = "../text_files/txt/x.txt"
 
 
-with pdfplumber.open(PDF_PATH) as pdf:
+with pdfplumber.open(INPUT_PDF_PATH) as pdf:
     
     total_num_pages = len(pdf.pages)
     print(f'total number of pages: {total_num_pages}')
@@ -16,6 +16,7 @@ with pdfplumber.open(PDF_PATH) as pdf:
         current_page = pdf.pages[i]
         
         # # only for the third volume
+        # # skip first line on each page
         # raw = current_page.extract_text()
         # raw_without_first_line = '\n'.join(raw.split('\n')[1:]) 
         # text += remove_spaces(raw_without_first_line) + '\n'
@@ -23,7 +24,7 @@ with pdfplumber.open(PDF_PATH) as pdf:
         text += remove_spaces(current_page.extract_text()) + '\n'
 
 # write to file
-with open(TXT_PATH, 'w') as f:
+with open(OUTPUT_TXT_PATH, 'w') as f:
     f.write(text)
 print('done.')
     
