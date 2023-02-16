@@ -9,7 +9,3 @@ def remove_spaces(s: str) -> str:
 def remove_spaces_concisely(s: str) -> str:
     """Convert every pdf page to a single line in the output."""
     return re.sub("\s+", " ", s).replace(" \n", "\n")
-
-
-def hello():
-    print("Hello World")
